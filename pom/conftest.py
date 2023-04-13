@@ -1,5 +1,4 @@
 import pytest
-
 from pom.base.webdriver_factory import WebDriverFactory
 from pom.pages.customer_login import LoginPage
 
@@ -18,7 +17,8 @@ def set_up(request):
 @pytest.fixture
 def log_in(request, set_up):
     login_page = LoginPage(request.cls.driver)
-    login_page.login("Admin", "admin123")
+    login_page.click_on_sign_in_link()
+    login_page.login("testuser@gmail.com", "TestUser1234()")
 
 
 def pytest_addoption(parser):
