@@ -1,4 +1,5 @@
 import selenium.common.exceptions as Ex
+from selenium.webdriver import ActionChains
 
 
 class SeleniumDriver:
@@ -52,3 +53,53 @@ class SeleniumDriver:
         print("Element reference is None")
         return False
 
+    def send_key(self, element, text: str):
+        if element:
+            try:
+                element.send_keys(text)
+                return True
+            except (Ex.NoSuchElementException, Ex.ElementNotInteractableException,
+                    Ex.ElementClickInterceptedException) as error:
+                print(error)
+                return False
+        print("Element reference is None")
+        return False
+
+    def clear_field(self, element):
+        if element:
+            try:
+                element.clear()
+                return True
+            except (Ex.NoSuchElementException, Ex.ElementNotInteractableException,
+                    Ex.ElementClickInterceptedException) as error:
+                print(error)
+                return False
+        print("Element reference is None")
+        return False
+
+    def hover(self, element):
+        if element:
+            try:
+                actions = ActionChains(self.driver)
+                actions.move_to_element(element).perform()
+                return True
+            except (Ex.NoSuchElementException, Ex.ElementNotInteractableException,
+                    Ex.ElementClickInterceptedException) as error:
+                print(error)
+                return False
+        print("Element reference is None")
+        return False
+
+    def scroll(self, element):
+        if element:
+            try:
+                actions = ActionChains(self.driver)
+                actions.move_to_element(element)
+                actions.perform()
+                return True
+            except (Ex.NoSuchElementException, Ex.ElementNotInteractableException,
+                    Ex.ElementClickInterceptedException) as error:
+                print(error)
+                return False
+        print("Element reference is None")
+        return False

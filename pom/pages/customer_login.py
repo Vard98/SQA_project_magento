@@ -1,7 +1,5 @@
 import time
-
 from selenium.webdriver.common.by import By
-
 from pom.base.base_page import BasePage
 
 
@@ -36,7 +34,7 @@ class LoginPage(BasePage):
         self.fill_username_field(username)
         self.fill_password_field(password)
         self.click_login()
-        time.sleep(5)
+        time.sleep(3)
 
     def verify_login_with_correct_user(self):
         return self.get_wait().wait_for_element(self.LOGGED_IN_USER_NAME)
