@@ -19,7 +19,7 @@ class WebDriverFactory:
         Returns:
             'WebDriver Instance'
         """
-        URL = "https://magento.softwaretestingboard.com/"
+        URL = "https://magento.softwaretestingboard.com"
         if self.browser_type == "edge":
             driver = webdriver.Edge()
         elif self.browser_type == "firefox":

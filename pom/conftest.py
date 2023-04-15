@@ -18,7 +18,7 @@ def set_up(request):
 @pytest.fixture
 def log_in(request, set_up):
     login_page = LoginPage(request.cls.driver)
-    login_page.login("Admin", "admin123")
+    login_page.login("testuser@gmail.com", "TestUser1234()")
 
 
 def pytest_addoption(parser):
