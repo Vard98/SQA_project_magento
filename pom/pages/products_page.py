@@ -17,6 +17,13 @@ class ProductsPage(BasePage):
     SIZE_ERROR_MESSAGE = (By.CSS_SELECTOR, "div[id='super_attribute[143]-error']")
     COLOR_ERROR_MESSAGE = (By.CSS_SELECTOR, "div[id='super_attribute[93]-error']")
     SHOPPING_CART_BUTTON = (By.LINK_TEXT, "shopping cart")
+    CHECKBOX_BUTTON = (By.ID, "sorter")
+    SORT_BY_PRICE_BUTTON = (By.CSS_SELECTOR, "option[value = 'price']")
+    SORT_BY_PRODUCT_NAME_BUTTON = (By.CSS_SELECTOR,"option[value = 'name']")
+    COMPARE_BUTTON = (By.XPATH, '//*[text() = "Add to Compare"]')
+    ADD_ALL_TO_CART_BUTTON = (By.XPATH, '//*[text()="Add All to Cart"]')
+    ADD_TO_WISHLIST_BUTTON = (By.XPATH, '//*[text() = "Add to Wish List"]')
+    WISHLIST_LINK = (By.XPATH, '//*[text() ="Go to Wish List"]')
 
     def select_product(self, index: int):
         products_list = self.find_list_of_elements(self.PRODUCT_ITEM)
@@ -63,3 +70,32 @@ class ProductsPage(BasePage):
     def open_shopping_cart(self):
         shopping_cart_button = self.get_wait().wait_for_element_to_be_clickable(self.SHOPPING_CART_BUTTON)
         self.click(shopping_cart_button)
+        
+        def click_checkbox(self):
+        self.get_wait().wait_for_element(self.CHECKBOX_BUTTON).click()
+
+    def click_sort_by_price(self):
+        self.get_wait().wait_for_element_to_be_clickable(self.SORT_BY_PRICE_BUTTON).click()
+
+    def click_sort_by_product_name(self):
+        self.get_wait().wait_for_element_to_be_clickable(self.SORT_BY_PRODUCT_NAME_BUTTON).click()
+
+    def click_add_to_compare(self):
+        self.get_wait().wait_for_element_to_be_clickable(self.COMPARE_BUTTON).click()
+
+    def get_compare_success_message(self):
+        compare_message = self.get_wait().wait_for_element(self.SUCCESS_MESSAGE)
+        return compare_message.text
+
+    def go_to_wishlist(self):
+        self.get_wait().wait_for_element(self.WISHLIST_LINK).click()
+
+    def click_add_all_to_cart(self):
+        self.get_wait().wait_for_element_to_be_clickable(self.ADD_ALL_TO_CART_BUTTON).click()
+
+    def click_add_to_wishlist(self):
+        self.get_wait().wait_for_element_to_be_clickable(self.ADD_TO_WISHLIST_BUTTON).click()
+
+    def get_add_to_wishlist_success_message(self):
+        wishlist_message = self.get_wait().wait_for_element(self.SUCCESS_MESSAGE)
+        return wishlist_message.text
